@@ -34,6 +34,12 @@ def generateMOQCtLbd(prob,vol,lbds,MOQ,function, path,name):
                print >>f,'%.3f,' %function(MOQ[p,v,r,:]),
             print >>f,'\n',
 def plotTable(v,vol,prob,lbds,MOQ,name):
+   """
+   DEFINITION:
+   v: index in volatility array
+   vol: volatility array. Contains simulated volatilities.
+   name: name of the plot. 
+   """
    np,_,nr,_=shape(MOQ)
    MOQshape = zeros((np,nr))
    for p in xrange(len(prob)):
@@ -72,40 +78,40 @@ def generateTableofStatistics(prob,vol,statistic,function, path,name):
             print >>f,'%.3f,' %function(statistic[p,v,:]),
          print >>f,'\n',
 
-##POLICIES
-#path = 'data/dynTabu/statistics/'
-#lbdMean = loadVar(path,'lbdMean')
-#lbdStd = loadVar(path,'lbdStd')
-#meanSquareError = loadVar(path,'meanSquareError')
-#rightEstimate = loadVar (path,'rightEstimate')
-#rightPrediction = loadVar (path,'rightPrediction')
-#rewardedTrials = loadVar (path,'rewardedTrials')
-#prob = array([.55,.65,.75,.85,.95])
-#vol = array([0,.005,.01,.05])
-#lbd = [0.01,0.11,0.21,0.31,0.41,0.51, 0.61, 0.71, 0.81, 0.91]
-#
-#generateTableofStatistics(prob, vol, lbdMean, mean, path, 'tableLbdMean')
-#generateTableofStatistics(prob, vol, lbdMean, std, path, 'tableLbdStdMean-consistence')
-#generateTableofStatistics(prob, vol, lbdStd, mean,path, 'tableLbdMeanStd-convergence') 
-#generateTableofStatistics(prob, vol, meanSquareError,mean, path, 'tableMeanSquareError')
-#generateTableofStatistics(prob, vol, rewardedTrials, mean,path,'tableRewardedTrials')
-#generateTableofStatistics(prob, vol, rightEstimate, mean,path,'tableRightEstimate')
-#generateTableofStatistics(prob, vol, rightPrediction,mean, path,'tableRightPrediction')
-
-#CONSTANT LAMBDA
-lbd = [0.01,0.11,0.21,0.31,0.41,0.51, 0.61, 0.71, 0.81, 0.91]
-prob = array([.55,.65,.75,.85,.95])
-vol = array([0, .001,.005,.01,.05,.1])
-path='data/ctLbd/statistics/'
+#POLICIES
+path = 'data/varredura_0-4/statistics/'
+lbdMean = loadVar(path,'lbdMean')
+lbdStd = loadVar(path,'lbdStd')
 meanSquareError = loadVar(path,'meanSquareError')
 rightEstimate = loadVar (path,'rightEstimate')
-#rightPrediction = loadVar (path,'rightPrediction')
-#rewardedTrials = loadVar (path,'rewardedTrials')
+rightPrediction = loadVar (path,'rightPrediction')
+rewardedTrials = loadVar (path,'rewardedTrials')
+prob = array([.55,.65,.75,.85,.95])
+vol = array([0,.005,.01,.05])
+lbd = [0.01,0.11,0.21,0.31,0.41,0.51, 0.61, 0.71, 0.81, 0.91]
 
-plotTable(4,vol, prob, lbd, rightEstimate,'Right Estimate')
-plotTable(4,vol, prob, lbd, meanSquareError, 'Mean Square Error')
-show()
-#generateMOQCtLbd(prob, vol, lbd,meanSquareError,mean,path,'tableMeanSquareError')
-#generateMOQCtLbd(prob, vol, lbd,rewardedTrials, mean,path,'tableRewardedTrials')
-#generateMOQCtLbd(prob, vol, lbd,rightEstimate,mean,path,'tableRightEstimate')
-#generateMOQCtLbd(prob, vol, lbd,rightPrediction, mean,path,'tableRightPrediction')
+generateTableofStatistics(prob, vol, lbdMean, mean, path, 'tableLbdMean')
+generateTableofStatistics(prob, vol, lbdMean, std, path, 'tableLbdStdMean-consistence')
+generateTableofStatistics(prob, vol, lbdStd, mean,path, 'tableLbdMeanStd-convergence') 
+#generateTableofStatistics(prob, vol, meanSquareError,mean, path, 'tableMeanSquareError')
+#generateTableofStatistics(prob, vol, rewardedTrials, mean,path,'tableRewardedTrials')
+generateTableofStatistics(prob, vol, rightEstimate, mean,path,'tableRightEstimate')
+#generateTableofStatistics(prob, vol, rightPrediction,mean, path,'tableRightPrediction')
+
+##CONSTANT LAMBDA
+#lbd = [0.01,0.11,0.21,0.31,0.41,0.51, 0.61, 0.71, 0.81, 0.91]
+#prob = array([.55,.65,.75,.85,.95])
+#vol = array([0, .001,.005,.01,.05,.1])
+#path='data/ctLbd/statistics/'
+#meanSquareError = loadVar(path,'meanSquareError')
+#rightEstimate = loadVar (path,'rightEstimate')
+##rightPrediction = loadVar (path,'rightPrediction')
+##rewardedTrials = loadVar (path,'rewardedTrials')
+#
+#plotTable(4,vol, prob, lbd, rightEstimate,'Right Estimate')
+#plotTable(4,vol, prob, lbd, meanSquareError, 'Mean Square Error')
+#show()
+##generateMOQCtLbd(prob, vol, lbd,meanSquareError,mean,path,'tableMeanSquareError')
+##generateMOQCtLbd(prob, vol, lbd,rewardedTrials, mean,path,'tableRewardedTrials')
+##generateMOQCtLbd(prob, vol, lbd,rightEstimate,mean,path,'tableRightEstimate')
+##generateMOQCtLbd(prob, vol, lbd,rightPrediction, mean,path,'tableRightPrediction')

@@ -11,17 +11,17 @@ vol = array([0, .001, .005, .01, .05])
 nTrials = 5000
 
 
-for v in vol:
-   for p in prob:
-      env = PRL(p, v)
-      for i in xrange(nTrials):
-         env.sufferAction(0)
-      saveArrangeVar(p, v, env, path, 'environment')
+#for v in vol:
+#   for p in prob:
+#      env = PRL(p, v)
+#      for i in xrange(nTrials):
+#         env.sufferAction(0)
+#      saveArrangeVar(p, v, env, path, 'environment')
 
 #see history
-#env = loadArrangeVar(.85, .001, path, 'environment')
-#
-#plot(env.history)
-#
-#show()
-#      
+env = loadArrangeVar(.85, .001, path, 'environment')
+
+plot(env.history)
+
+show()
+      

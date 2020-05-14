@@ -55,7 +55,7 @@ class DynTabu(object):
          a_pert = argmin(xNeighborhood + noise)
          
          action = self.mapIndex(a_opt, a_pert,self.ngbhdSize)
-         self.neighborhood = self.mapNeighborhood(ngbhdAllowed)#neighborhood has indexes related with the original self.x vector
+         self.neighborhood = self.mapNeighborhood(ngbhdAllowed) #neighborhood has indexes related with the original self.x vector
       return action
    
    def threshold(self):

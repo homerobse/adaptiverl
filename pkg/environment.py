@@ -28,7 +28,7 @@ class PRL(Environment):
       return int(reward)
    
    def saveHistory(self):
-      '''Save the history of probability of choice 0 being correct'''
+      '''Save the history of probability of choice 0 (A) being correct'''
       if(int(self.t*self.vol)%2==0):
          self.history=r_[self.history,self.prob]
       elif(int(self.t*self.vol)%2!=0):

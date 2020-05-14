@@ -52,7 +52,7 @@ def simulateCtLbd (vol,prob,x0,lRates,nTrials,nEpisodes,pPolicy,fixSeed=True,sav
       for p in prob:
          for lr in lRates:
             for e in xrange(nEpisodes):
-               seed(e)  # this makes episode e have the same pseudo-random numbers for different p and v
+               if fixSeed: seed(e)  # this makes episode e have the same pseudo-random numbers for different p and v
                
                #set up
                environment = PRL(p,v)

@@ -6,13 +6,13 @@ from pkg.utils import dualPrint, showProgress
 import time
 from datetime import datetime
 
-path = 'data/dynTabu/'
+path = 'data/varredura_0-4/'
 outputPath = path + 'statistics/'
 begin = time.time()
 
 prob = array([.55, .65, .75, .85, .95])
 vol = array([0, .005, .01, .05])
-nEpisodes = 30
+nEpisodes = 10
 
 lbdMean = np.zeros((len(prob), len(vol), nEpisodes))
 lbdStd = np.zeros((len(prob), len(vol), nEpisodes))

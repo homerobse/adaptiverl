@@ -1,7 +1,6 @@
 from numpy.core.numeric import zeros, array
 from numpy.ma.core import exp, sqrt
 from scipy.constants.constants import pi
-import pdb
 
 class Gaussian(object):
    '''
@@ -17,8 +16,10 @@ class Gaussian(object):
       
    def learn(self):
       self.center = float(self.agent.actions[-1])
-      self.a = sum([exp(-1/2*((i-self.center)/self.sgm)**2) for i in xrange(self.n)])
+      #self.a = sum([exp(-1/2*((i-self.center)/self.sgm)**2) for i in xrange(self.n)])
       for i in xrange(self.n):
          self.update[i]= 1/self.a*exp(-1/2*((i-self.center)/self.sgm)**2)
       newValue = self.agent.x[-1] + self.update*self.agent.lr[-1] * self.agent.err[-1]
+#      import pdb
+#      pdb.set_trace()
       return array([newValue])

@@ -11,7 +11,7 @@ def showProgress(totalIter, n, now, begin):
 
 def genStat(mtx,function):
    '''
-   DEFINITION: generates a statistic of each colum in a matrix
+   DEFINITION: generates a statistic of each column in a matrix
    INPUTS:
    mtx: array
    function: function like mean or average that we want to apply in the vector

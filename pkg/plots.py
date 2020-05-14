@@ -10,6 +10,7 @@ from matplotlib.ticker import FormatStrFormatter
 from pkg.agent import Agent
 from numpy.lib.index_tricks import r_
 from pkg.utils import genStat
+import pdb
    
 def showPredictions(prob, vol, epis,path):
    '''Temporal evolution of agent's prediction in comparison with the real value'''
@@ -24,7 +25,7 @@ def showPredictions(prob, vol, epis,path):
    legend()
    
 def showAgentDynamics(prob, vol, epis, path):
-   '''Plot agent's errors, rewards and learning rates '''
+   '''Plot agent's errors, rewards and learning rates from saved data'''
    agent = loadEpisodeVar(prob, vol, epis, path,'agent')
    xlabel('Trials')
    plot(agent.err,'.',label="error")
@@ -40,7 +41,6 @@ def figureAgent(prob, vol, epis,path):
    showPredictions(prob, vol, epis,path)
    subplot(2,1,2)
    showAgentDynamics(prob, vol, epis,path)
-
 def showPredictions2(environment,agent):
    '''Temporal evolution of agent's prediction in comparison with the real value'''   
    prob = environment.prob
@@ -52,7 +52,7 @@ def showPredictions2(environment,agent):
    plot(agent.x, label="value")
    legend()
 def showAgentDynamics2(agent):
-   '''Plot agent's errors, rewards and learning rates '''
+   '''Plot agent's errors, rewards and learning rates from data in memory (agent variable)'''
    xlabel('Trials')
    plot(agent.err,'.',label="error")
    plot(agent.r, 'o',label="reward")
@@ -84,7 +84,7 @@ def showQValues2(lrAgent,spFactor=1):
    xlabel('Learning rates')
    ylabel('Trials') 
 def show3dQValues2(lrAgent):
-   '''Colorplot for the QValues'''
+   '''3d Colorplot for the QValues'''
    fig = figure()
    ny,nx = shape(lrAgent.x)
    ax = fig.gca(projection='3d')
@@ -134,6 +134,7 @@ def showAverageQValues(p, v, nEpisodes, path):
    for  e in xrange(nEpisodes):
       if e!=0: lrAgent = loadEpisodeVar(p, v, e, path, 'lrAgent')
       avgValues += lrAgent.x
+#      pdb.set_trace()
    avgValues = avgValues/nEpisodes
    figure()
    title('Average Q-values over the trials- p='+str(p)+' v='+str(v))
@@ -149,7 +150,7 @@ def showAverageQValues(p, v, nEpisodes, path):
    xlabel('Learning rates')
    ylabel('Trials')  
 
-def showAverageQTrace(p,v,nEpisodes,path):
+def showAverageQTrace(p, v, nEpisodes,path):
    '''
    DEFINITION: plot the Q-values in the last trial averaged over all episodes
    INPUTS:
@@ -169,11 +170,22 @@ def showAverageQTrace(p,v,nEpisodes,path):
    title('Averaged Q-values - p='+str(p)+' v='+str(v))
    xlabel('Learning rates')
 def showQTrace2(lrAgent):
+   '''
+   DEFINITION: plot Q-values in the last trial of the episode
+   '''
    figure()
    plot(lrAgent.lbd,lrAgent.x[-1],'o')
    title('Q-values')
    xlabel('Learning rates')
 def showQTrace(p,v,e,path):
+   '''
+   DEFINITION: plot Q-values in the last trial of the episode
+   INPUTS:
+   p: probability
+   v: volatility
+   e: episode
+   path: location of the file
+   '''
    lrAgent = loadEpisodeVar(p, v, e, path, 'lrAgent')
    figure()
    plot(lrAgent.x[-1],'o')

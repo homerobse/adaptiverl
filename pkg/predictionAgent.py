@@ -16,7 +16,7 @@ class PredictionAgent(Agent, Environment):
          self.err = r_[self.err,self.r[-1] - self.x[-1]]
       else:
          self.err = r_[self.err,complementaryRwd(self.r[-1]) - self.x[-1]]
-      #update value
+      #update value - delta rule / Rescorla-Wagner rule
       self.x = r_[self.x,self.x[-1] + self.lr[-1]*self.err[-1]]
       
    def sufferAction(self,opt):
